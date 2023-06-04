@@ -19,35 +19,56 @@
 
 ### 로그인 기능 : 로그인 기능입니다. 회원가입할 때 입력한 이메일과 비밀번호로 로그인할 수 있으며 구글 계정으로 연동해서 회원가입, 로그인할 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/083c01eb-c1dc-43ec-8808-29b46af13a86/Untitled.png)
+# 우리동네핫플
+
+### 🔗  웹사이트 링크 : [https://hotplace-10bcb.web.app](https://hotplace-10bcb.web.app/#/)
+
+### 🔗 gitHub 코드 : https://github.com/heejunns/hotplace
+
+### 💁‍♂️  왜 만들었는가?
+
+동네의 카페, 음식점, 마트 등을 한 번에 찾아볼 수 있고 사장님들도 본인의 매장을 홍보할 수 있는 애플리케이션이 있으면 좋겠다는 생각에 개발하였습니다.
+
+### 애플리케이션 설명
+
+사장님들 또는 손님이 직접 글을 게시하여 매장 글을 올릴 수 있으며 손님들의 진짜 의견을 위해서 게시글의 댓글 기능, 좋아요 기능을 만들어 손님들의 진짜 후기를 확인하여 매장을 선택해 방문할 수 있습니다.
+
+누구나 우리 동네 맛집을 소개할 수 있는 애플리케이션입니다.
+
+## 사용기술
+
+- 프론트엔드 : html, css, styled-components, JavaScript, React.js,
+- 백엔드 : firebase
+
+### 어플리케이션 주요 기능
+
+### 로그인 기능 : 로그인 기능입니다. 회원가입할 때 입력한 이메일과 비밀번호로 로그인할 수 있으며 구글 계정으로 연동해서 회원가입, 로그인할 수 있습니다.
+
+<img src = "./images/loginPhoto.png">
 
 ### 회원가입 기능 : 구글 계정으로 로그인하지 않고 이메일과 비밀번호를 입력해 회원가입할 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7c585c0f-2f8a-40cf-8cd1-8437c9d1a5e8/Untitled.png)
+<img src = "./images/signUp.png">
 
 ### 게시물 업로드 기능 : 사용자가 원하는 글을 게시할 수 있는 기능입니다. 하나의 사진을 첨부할 수 있고 올리는 게시글이 카페,음식,마트 관련인지 선택할 수 있습니다. 게시물들을 업로드하면서 남길 글을 작성할 수 있고 사용자가 올리는 글에서 소개하는 매장의 위치를 카카오 맵으로 마커를 남겨 업로드할 수 있습니다. 다른 사용자가 이 지도를 보고 해당 매장의 위치를 알 수 있게 됩니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/55181972-c0bf-4eb1-b564-bdabe0436c5d/Untitled.png)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ce41e7a0-c623-483b-bc9b-75dc55d4d471/Untitled.png)
+<img src = "./images/fileUpload.png">
 
 ### 게시물 지도보기 기능 : 게시물에서 지도 보기 버튼을 클릭하면 게시물을 작성한 사람이 마커 한 위치의 지도를 볼 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec856610-e08c-4802-8fef-1301c77f5544/Untitled.png)
+<img src = "./images/map.png">
 
 ### 게시물 좋아요 기능 : 게시물에 공감한다면 좋아요를 남길 수 있습니다. 게시글의 작성자든 게시글을 보는 사용자든 무분별한 좋아요를 막기 위해서 게시글 하나당 계정 하나의 좋아요만 남길 수 있습니다. 다시 클릭하면 좋아요는 취소됩니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/012f54d8-8949-4113-9a78-a8826a871c37/Untitled.png)
+<img src = "./images/like.png">
 
 ### 게시글 댓글 기능 : 게시글에 댓글을 남길 수 있습니다. 게시글에 좋아요를 남길 수도 있고 댓글을 수정하거나 삭제 할 수도 있습니다. 좋아요는 게시글 좋아요와 마찬가지로 무분별한 좋아요를 방지하기 위해서 계정 하나당 하나의 댓글에 한 번의 좋아요만 남길 수 있습니다. 다시 클릭한다면 좋아요는 취소됩니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/762c05cd-e0e1-45e9-9010-d0750f98ce0d/Untitled.png)
-
+<img src = "./images/comment.png">
 ### 게시글 분류해서 보기 : 홈 화면에서 오른쪽 위에 햄버거 버튼을 클릭하면 게시글을 원하는 종류만 볼 수 있도록 하였습니다. 종류는 카페, 음식, 마트 관련 게시글만 보기, 좋아요가 가장 많은 게시글 순으로 보기, 내가 사는 지역 게시글만 보기 기능이 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/59212148-316d-400a-9393-5ed9d437cbbc/Untitled.png)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5c525339-363c-454f-b180-1c880d1221ae/Untitled.png)
+<img src = "./images/hamburgerButton.png">
+<img src = "./images/modeChange.png>
 
 ### 개발하면서 어려웠지만 좀 더 배웠던 부분
 
