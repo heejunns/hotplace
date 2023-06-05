@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import styled from "styled-components";
 import { authService } from "../reactfbase";
-
+// 에러 메세지 스타일 태그
 const ErrorMessage = styled.div`
   margin-top: 2rem;
   color: red;
@@ -11,6 +11,7 @@ const ErrorMessage = styled.div`
   display: flex;
   justify-content: center;
 `;
+// 회원가입할 때 에러가 발생하면 에러를 보여줄 스타일 태그
 const ErrorMessagePassword = styled(ErrorMessage)`
   margin: 0.5rem 0 0 50%;
   @media screen and (min-width: 600px) {
@@ -22,6 +23,7 @@ const ErrorMessagePassword = styled(ErrorMessage)`
     font-size: 2rem;
   }
 `;
+// 에러없이 성공하면 보여줄 성공 메세지 스타일 태그
 const SuccessMessage = styled.div`
   margin-top: 0.5rem;
   color: green;
@@ -36,6 +38,7 @@ const SuccessMessage = styled.div`
     font-size: 2rem;
   }
 `;
+// 회원가입 페이지 배경 스타일 태그
 const SignUpBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   background: white;
@@ -47,6 +50,7 @@ const SignUpBack = styled.div`
   justify-content: center;
   min-width: 370px;
 `;
+// 회원가입 폼 스타일 태그
 const SignUpForm = styled.form`
   margin-top: 5rem;
   width: 80%;
@@ -79,7 +83,7 @@ const SignUpForm = styled.form`
     width: 40%;
   }
 `;
-
+// 이메일 입력 레이아웃 스타일 태그
 const InputEmailLayout = styled.div`
   width: 100%;
   margin-bottom: 1rem;
@@ -90,6 +94,7 @@ const InputEmailLayout = styled.div`
     margin-bottom: 3rem;
   }
 `;
+// 비밀번호 입력 레이아웃 스타일 태그
 const InputPasswordLayout = styled.div`
   width: 100%;
   margin: 1rem 0;
@@ -100,6 +105,7 @@ const InputPasswordLayout = styled.div`
     margin-bottom: 3rem;
   }
 `;
+// 비밀번호 확인 입력 레이아웃 스타일 태그ㄴ
 const InputPasswordCheckLayout = styled.div`
   width: 100%;
   margin: 1rem 0;
@@ -110,6 +116,7 @@ const InputPasswordCheckLayout = styled.div`
     margin-bottom: 3rem;
   }
 `;
+// 이메일 입력 라벨 스타일 태그
 const InputEmailText = styled.label`
   font-size: 1rem;
   display: inline-block;
@@ -137,6 +144,7 @@ const InputEmailText = styled.label`
     vertical-align: -0.6rem;
   }
 `;
+// 이메일 입력 input 스타일 태그
 const InputEmail = styled.input`
   width: 62%;
   height: 2rem;
@@ -161,6 +169,7 @@ const InputEmail = styled.input`
     width: 50%;
   }
 `;
+// 비밀번호 입력 라벨 스타일 태그
 const InputPasswordText = styled.label`
   font-size: 1rem;
   display: inline-block;
@@ -189,6 +198,7 @@ const InputPasswordText = styled.label`
     vertical-align: -0.6rem;
   }
 `;
+// 비밀번호 입력 스타일 태그
 const InputPassword = styled.input`
   width: 62%;
   height: 2rem;
@@ -213,6 +223,7 @@ const InputPassword = styled.input`
     width: 50%;
   }
 `;
+// 비밀번호 확인 입력 라벨 스타일 태그
 const InputPasswordCheckText = styled.label`
   display: inline-block;
   width: 38%;
@@ -241,6 +252,7 @@ const InputPasswordCheckText = styled.label`
     vertical-align: -0.6rem;
   }
 `;
+// 비밀번호 확인 입력 input 스타일 태그
 const InputPasswordCheck = styled.input`
   width: 62%;
   height: 2rem;
@@ -265,7 +277,7 @@ const InputPasswordCheck = styled.input`
     width: 50%;
   }
 `;
-
+// 비밀번호 확인 입력에 기존에 입력한 비밀번호와 일치하는지 꼭 입력해달라는 메세지 스타일 태그
 const InputPasswordCheckMessage = styled.div`
   font-size: 0.8rem;
   margin: 0.5rem 0 0 50%;
@@ -286,6 +298,7 @@ const InputPasswordCheckMessage = styled.div`
     font-size: 2rem;
   }
 `;
+// 회원가입 버튼 스타일 태그
 const SignUpButton = styled.button`
   width: 50%;
   height: 2rem;
@@ -305,11 +318,12 @@ const SignUpButton = styled.button`
     height: 3rem;
   }
 `;
+// 회원가입 버튼 레이아웃 스타일 태그
 const SignButtonLayout = styled.div`
   width: 100%;
   text-align: center;
 `;
-
+// 로고 이름 스타일 태그
 const LogoName = styled.div`
   min-width: 245px;
   color: mediumorchid;
@@ -336,7 +350,7 @@ const Signup = () => {
   const [inputNewPassword, setInputNewPassword] = useState(""); // 입력하는 비밀번호 state
   const [inputNewPasswordCheck, setInputNewPasswordCheck] = useState(""); // 입력하는 비밀번호확인 state
   const [checkPasswordApproval, setCheckPasswordApproval] = useState(null); // 입력하는 비밀번호와 비밀번호확인에 입력한 비밀번호가 같은 여부를 확인하는 state
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // 에러가 발생하면 에러 메세지를 저장할 state
   // 입력하는 이메일과 비밀번호의 input 태그에서 onchange 이벤트가 발생하면 호출
   const onchangeInput = useCallback((event) => {
     const {
@@ -351,11 +365,6 @@ const Signup = () => {
   // 이메일과 비밀번호, 비밀번호확인을 입력하고 회원가입 버튼을 클릭하면 호출
   const onsubmitSignUpButton = async (e) => {
     e.preventDefault();
-    console.log("hello world!");
-    if (checkPasswordApproval !== true) {
-      setError("비밀번호 확인을 해주세요.");
-      return;
-    }
 
     try {
       const createData = await createUserWithEmailAndPassword(

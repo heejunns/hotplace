@@ -3,6 +3,7 @@ import { authService } from "../reactfbase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import styled from "styled-components";
 
+// 로그인 폼 스타일 태그
 const FormStyle = styled.form`
   text-align: center;
   height: 40%;
@@ -12,6 +13,7 @@ const FormStyle = styled.form`
   justify-content: space-evenly;
   align-items: center;
 `;
+// 로그인 폼 내에 input 스타일 태그
 const InputStyle = styled.input`
   display: block;
   width: 90%;
@@ -23,6 +25,7 @@ const InputStyle = styled.input`
     height: 3rem;
   }
 `;
+// 이메일, 비밀번호 입력 후 클릭하는 버튼 스타일 태그
 const ButtonStyle = styled.button`
   width: 50%;
   height: 2rem;
@@ -45,6 +48,7 @@ const Login = () => {
       : setInputPassword(e.target.value);
   }, []);
 
+  // 로그인 버튼 클릭 했을 때 호출
   const onsubmitLoginButton = useCallback(
     async (e) => {
       e.preventDefault();

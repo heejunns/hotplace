@@ -2,8 +2,9 @@ import { signOut } from "firebase/auth";
 import React, { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authService, dbService } from "../reactfbase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { authService } from "../reactfbase";
+
+// 네이게이선 배경 스타일 태그
 const NavigationBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   height: 5vh;
@@ -15,6 +16,8 @@ const NavigationBack = styled.div`
     height: 5vh;
   }
 `;
+
+// 애플리케이션의 이름 스타일 태그
 const Name = styled.div`
   font-size: 1.5rem;
   position: absolute;
@@ -27,7 +30,7 @@ const Name = styled.div`
     display: none;
   }
 `;
-
+// 네이게이션 요소들의 레이아웃 스타일 태그
 const NavigationLayout = styled.ul`
   min-width: 370px;
   width: 85%;
@@ -46,6 +49,7 @@ const NavigationLayout = styled.ul`
     font-size: 1.5rem;
   }
 `;
+// 네비게이션 요소들의 스타일 태그
 const NavigationItem = styled.a`
   color: black;
   margin: 0 1rem;
@@ -53,6 +57,7 @@ const NavigationItem = styled.a`
     color: white;
   }
 `;
+// 로그아웃 버튼 스타일 태그
 const LogOutButton = styled.button`
   font-family: "Nanum Myeongjo", serif;
   font-size: 0.7rem;
@@ -73,9 +78,9 @@ const LogOutButton = styled.button`
 `;
 
 const Navigation = ({ user }) => {
-  // 로그아웃 버튼을 클릭하면 호출되는 콜백함수
-
   const navigate = useNavigate(); // useNavigate 훅스를 사용해서 로그 아웃시 "/" 주소로 강제 이동
+
+  // 로그아웃 버튼을 클릭하면 호출되는 콜백 함수
   const onclickLogoutButton = async () => {
     // 로그아웃하기
     try {

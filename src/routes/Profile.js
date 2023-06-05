@@ -11,17 +11,13 @@ import {
 import styled from "styled-components";
 import Post from "../components/Post";
 
-//  닉네임을 설정하는 과정에서 user 객체의 displayname 을 사용하려고 할 때 updateProfile 를 이용해 user 객체의 displayname 을 변경하여 닉네임을 변경한다.
-// 문제는 이 과정에서 변경하고 싶은 닉네임을 작성 후 submit 하면 네비게이션의 닉네임이 바로 업데이트 되지 않고 새로고침이나 페이지를 이동해야만 변경한 닉네임이 화면에 반영된다.
-// 새로운 닉네임을 작성 후 submit 버튼을 클릭하고 user 객체의 displayname 의 변경이 있는지 확인해보면 변경은 되는것을 확인 할 수 있다.
-// 내 예상 닉네임 변경전과 변경후의 user 객체가 같은 유저 객체라 리 랜더링이 일어나지 않아서 그런거 같다. 직접 확인 해보면 변경전과 변경후의 유저 객체는 같은 객체이다.
-
 // 현재 우리가 다양한 컴포넌트에 prop 로 전달해주고 있는 user 객체를 authService.currentUser 로 업데이트 해야한다. 하지만 set 함수로 업데이트 해도 리 랜더링이 되지 않는다. 왜일까?
 // react 는 복잡하고 큰 객체를 전에 상태와 바뀌었는지 판단하는것을 어려워한다.
 // 그럼 어떻게 리액트가 상태가 바뀐것을 판단하고 리 랜더링 해주게 할까?
 // 첫번째 방법은 user 객체에서 필요한 데이터가 따로 가져와 새로운 객체를 생성해 사용하는 것이다. user 객체의 모든 내용을 사용하지 않는데 모든 데이터를 prop 로 전달하면서  사용할 필요가 없다는 뜻이다.
 // 또 다른 방법은 user 객체 자체를 복사해서 업데이트 하는 것이다. JSON.parse(JSON.stringify(객체)) , Object.assign({},객체)
 
+// 프로필 페이지 배경 스타일 태그
 const ProfileBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   background: white;
@@ -32,7 +28,7 @@ const ProfileBack = styled.div`
   align-items: center;
   min-width: 370px;
 `;
-
+// 프로필 이름을 변경하는 폼 스타일 태그
 const ProfileForm = styled.form`
   margin-top: 0.5rem;
   border: 3px solid mediumorchid;
@@ -49,6 +45,7 @@ const ProfileForm = styled.form`
     width: 53%;
   }
 `;
+// 현재 사용자가 올린 게시글을 보여줄 게시글 레이아웃 스타일 태그
 const PostProfileLayout = styled.div`
   padding: 0.5rem;
   margin-top: 1rem;
@@ -67,6 +64,7 @@ const PostProfileLayout = styled.div`
     width: 60%;
   }
 `;
+// 프로필 이름 변경 폼 내부의 input 스타일 태그
 const ProfileFormInput = styled.input`
   width: 60%;
   height: 2rem;
@@ -76,6 +74,7 @@ const ProfileFormInput = styled.input`
   background: white;
   margin-right: 1rem;
 `;
+// 프로필 이름 변경 후 버튼을 클릭하는데 닉네임 변경 버튼 스타일 태그
 const ProfileFormSubmit = styled.input`
   border-radius: 5px;
   border: 3px solid mediumorchid;

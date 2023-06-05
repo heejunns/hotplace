@@ -1,5 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+
+// 맵 레이아웃 스타일 태그
 const MapLayout = styled.div`
   width: 100%;
   border: 3px solid mediumorchid;
@@ -11,6 +13,7 @@ const MapLayout = styled.div`
   padding: 0.5rem;
   height: 85%;
 `;
+// 맵 이미지 스타일 태그
 const MapImage = styled.div`
   color: mediumorchid;
   width: 100%;
@@ -23,12 +26,13 @@ const MapImage = styled.div`
     height: 18rem;
   }
 `;
+// 마커 버튼 레이아웃 스타일 태그
 const ButtonLayout = styled.div`
   width: 50%;
   display: flex;
   justify-content: center;
 `;
-
+// 마커 버튼 스타일 태그
 const ButtonMarker = styled.button`
   border-radius: 10px;
   border: 3px solid mediumorchid;
@@ -44,7 +48,7 @@ const ButtonMarker = styled.button`
 `;
 
 const Map = ({ setUserMarkerLocation }) => {
-  const [marker, setMarker] = useState("");
+  const [marker, setMarker] = useState(""); // 마커 버튼을 클릭하면 호출 될 함수를 저장할 state
   const getLocation = useCallback(
     async (position) => {
       const lat = await position.coords.latitude;
@@ -128,34 +132,9 @@ const Map = ({ setUserMarkerLocation }) => {
 
   useEffect(() => {
     if (navigator.geolocation) {
+      // 위치가 있다면
       navigator.geolocation.getCurrentPosition(getLocation);
     }
-    // 주소-좌표 변환 객체를 생성합니다
-    //   var geocoder = new window.kakao.maps.services.Geocoder();
-    //   // 주소로 좌표를 검색합니다
-    //   geocoder.addressSearch(
-    //     "제주특별자치도 제주시 첨단로 242",
-    //     function (result, status) {
-    //       // 정상적으로 검색이 완료됐으면
-    //       if (status === window.kakao.maps.services.Status.OK) {
-    //         var coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
-    //         // 결과값으로 받은 위치를 마커로 표시합니다
-    //         var marker = new window.kakao.maps.Marker({
-    //           map: map,
-    //           position: coords,
-    //         });
-    //         // 인포윈도우로 장소에 대한 설명을 표시합니다
-    //         var infowindow = new window.kakao.maps.InfoWindow({
-    //           content:
-    //             '<div style="width:150px;text-align:center;padding:6px 0;">여기가 맛집</div>',
-    //         });
-    //         infowindow.open(map, marker);
-    //         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    //         map.setCenter(coords);
-    //       }
-    //     }
-    //   );
-    // }
   }, [getLocation]);
 
   console.log(marker);

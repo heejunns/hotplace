@@ -187,6 +187,7 @@ const Home = ({ user, userLocation }) => {
       );
     });
   }, []);
+  // 카페, 음식, 마트 게시물 보기 클릭하였을 때
   const onclickPost = useCallback((category) => {
     const q = query(
       collection(dbService, "test"),
@@ -203,6 +204,7 @@ const Home = ({ user, userLocation }) => {
       );
     });
   }, []);
+  // 좋아요 순 게시글 보기 클릭하였을 때
   const onclickPostLike = useCallback(() => {
     const q = query(
       collection(dbService, "test"),
@@ -219,7 +221,7 @@ const Home = ({ user, userLocation }) => {
       );
     });
   }, []);
-
+  // 사용자의 사는 지역 게시글만 보기 클릭하였을 때
   const onclickPostAddress = useCallback(() => {
     const q = query(
       collection(dbService, "test"),

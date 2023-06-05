@@ -5,6 +5,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import Login from "../components/Login";
 import styled from "styled-components";
 
+// 로그인 폼 배경 스타일 태그
 const LoginFormBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   width: 100%;
@@ -15,7 +16,7 @@ const LoginFormBack = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+// 로그인 폼 레이아웃 스타일 태그
 const LoginFormLayout = styled.div`
   margin-top: 5rem;
   border: 3px solid mediumorchid;
@@ -35,7 +36,7 @@ const LoginFormLayout = styled.div`
     width: 30%;
   }
 `;
-
+// 로그인 폼 내에 버튼 레이아웃 스타일 태그
 const ButtonLayout = styled.div`
   width: 100%;
   height: 5rem;
@@ -43,7 +44,7 @@ const ButtonLayout = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
-
+// 로그인 폼 내에 버튼 스타일 태그
 const ButtonStyle = styled.button`
   border: 3px solid mediumorchid;
   background: white;
@@ -54,6 +55,7 @@ const ButtonStyle = styled.button`
     height: 3rem;
   }
 `;
+// 로그인 폼 위에 로고 이름 보여주는 스타일 태그
 const LogoName = styled.div`
   color: mediumorchid;
   font-size: 3rem;

@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { authService } from "../reactfbase";
 import styled from "styled-components";
 
+// 처음 로딩 될때 화면을 보여줄 컴포넌트
 const Loading = styled.div`
   width: 100%;
   color: mediumorchid;
@@ -19,17 +20,13 @@ const Loading = styled.div`
 // 파이어 베이스가 초기화되고 모든 걸 로드할때까지 기다려 줘야 한다.
 
 const App = () => {
-  const [firebaseInitialize, setFirebaseInitialize] = useState(null);
-  const [isLogin, setIsLogin] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [userLocation, setUserLocation] = useState("");
+  const [firebaseInitialize, setFirebaseInitialize] = useState(null); // 파이어 베이스의 초기화 여부 state
+  const [isLogin, setIsLogin] = useState(false); // 로그인 여부 state
+  const [currentUser, setCurrentUser] = useState(null); // 현재 로그인하고 있는 유저의 정보
+  const [userLocation, setUserLocation] = useState(""); // 현재 유저의 위치 정보
   useEffect(() => {
     onAuthStateChanged(authService, (user) => {
       if (user) {
-        // setCurrentUser({
-        //   uid: user.uid,
-        //   displayName: user.displayName,
-        // });
         setCurrentUser(user);
         setIsLogin(true);
       } else {
@@ -61,6 +58,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    // 사용자의 위치가 있다면 가지고 오기
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userGetLocation);
     }

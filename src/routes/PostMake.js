@@ -7,6 +7,8 @@ import styled from "styled-components";
 import Map from "../components/Map";
 import { useNavigate } from "react-router-dom";
 // 식별자를 랜덤으로 생성해줌
+
+// 게시글 올리는 페이지의 배경 스타일 태그
 const PostMakeBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   width: 100%;
@@ -16,6 +18,8 @@ const PostMakeBack = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
+
+// 게시글 올리기 폼 스타일 태그
 const PostFormStyle = styled.form`
   min-width: 370px;
   overflow-y: auto;
@@ -50,6 +54,7 @@ const InputPostStyle = styled.input`
     font-size: 2rem;
   }
 `;
+// 카테고리 선택 input 스타일 태그
 const InputCategory = styled.input`
   margin-right: 1rem;
   vertical-align: 0rem;
@@ -63,9 +68,11 @@ const InputCategory = styled.input`
     vertical-align: 0.3rem;
   }
 `;
+// 이미지 업로드 버튼 input 스타일 태그
 const FileSelectButton = styled.input`
   display: none;
 `;
+// 이미지 업로드 버튼 label 레이아웃 스타일 태그
 const FileSelectLabelLayout = styled.div`
   margin-left: 1rem;
   display: flex;
@@ -84,6 +91,7 @@ const FileSelectLabelLayout = styled.div`
     font-size: 2rem;
   }
 `;
+// 게시글에 올릴 정보를 모두 작성하고 클릭하는 완료 버튼 스타일 태그
 const SubmitButtonStyle = styled.input`
   width: 60%;
   padding: 0.5rem;
@@ -100,6 +108,7 @@ const SubmitButtonStyle = styled.input`
     font-size: 2rem;
   }
 `;
+// 작성하는 글의 매장 위치를 기록하기 위한 카카오 맵을 불러오는 위치 지정하기 버튼 스타일 태그
 const MapButton = styled.button`
   width: 60%;
   padding: 0.5rem;
@@ -116,6 +125,7 @@ const MapButton = styled.button`
     font-size: 2rem;
   }
 `;
+// 업로드 이미지 레이아웃 스타일 태그
 const UploadImageLayout = styled.div`
   margin: 0.3rem 0 0 1rem;
   width: 4rem;
@@ -131,6 +141,7 @@ const UploadImageLayout = styled.div`
     margin: 0.5rem 0 0 1rem;
   }
 `;
+// 업로드 이미지 스타일 태그
 const UploadImageStyle = styled.img`
   width: 3rem;
   height: 3rem;
@@ -145,6 +156,7 @@ const UploadImageStyle = styled.img`
     height: 4rem;
   }
 `;
+// 업로드 이미지를 삭제할 버튼 스타일 태그
 const UploadImageDeleteButton = styled.button`
   cursor: pointer;
   position: absolute;
@@ -167,6 +179,8 @@ const UploadImageDeleteButton = styled.button`
  
 
 `;
+
+// 가장 위의 레리아웃, 이미지 업로드 들어감
 const TopLayout = styled.div`
   margin-top: 0.5rem;
   border: 3px solid mediumorchid;
@@ -175,6 +189,7 @@ const TopLayout = styled.div`
   height: 12%;
   display: flex;
 `;
+// 중간 첫번째 레이아웃 스타일 태그, 카테고리 선택이 들어감
 const MiddleOneLayout = styled.div`
   font-size: 0.8rem;
   padding: 0.5rem;
@@ -203,7 +218,7 @@ const MiddleOneLayout = styled.div`
     height: 7%;
   }
 `;
-
+// 중간 두번째 레이아웃 스타일 태그 , 게시글의 글 input 이 들어감
 const MiddleTwoLayout = styled.div`
   margin-top: 0.5rem;
   width: 100%;
@@ -211,14 +226,14 @@ const MiddleTwoLayout = styled.div`
   border-radius: 5px;
   border: 3px solid mediumorchid;
 `;
-
+// 중간 세번째 레이아웃 스타일 태그 , 맵에 마커하는 태그가 들어감
 const MiddleThreeLayout = styled.div`
   width: 100%;
   height: 55%;
   margin-top: 0.5rem;
   text-align: center;
 `;
-
+// 가장 아래 레이아웃 스타일 태그, 게시글 작성 롼료 버튼이 들어감
 const BottomLayout = styled.div`
   margin-top: 0.5rem;
   text-align: center;
