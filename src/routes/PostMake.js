@@ -158,6 +158,7 @@ const UploadImageStyle = styled.img`
 `;
 // 업로드 이미지를 삭제할 버튼 스타일 태그
 const UploadImageDeleteButton = styled.button`
+  font-size :1.5rem;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -335,7 +336,9 @@ const PostMake = ({ user, userLocation }) => {
       <PostFormStyle onSubmit={onsubmitButtonClick}>
         <TopLayout>
           <FileSelectLabelLayout>
-            <label htmlFor="fileSelect">ImageUpload</label>
+            <label htmlFor="fileSelect">
+              <i class="fa-regular fa-folder"></i>
+            </label>
           </FileSelectLabelLayout>
           <FileSelectButton
             id="fileSelect"
@@ -350,7 +353,7 @@ const PostMake = ({ user, userLocation }) => {
                 type="button"
                 onClick={onclickUploadFileDelete}
               >
-                X
+                &#215;
               </UploadImageDeleteButton>
             </UploadImageLayout>
           )}

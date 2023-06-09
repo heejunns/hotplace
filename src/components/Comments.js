@@ -63,6 +63,7 @@ const CommentSubmitButton = styled.button`
 `;
 // 댓글을 삭제할 수 있는 버튼의 스타일 태그
 const CommentModeDeleteButton = styled.button`
+  font-size: 1.5rem;
   float: right;
   background: white;
   border: 3px solid mediumorchid;
@@ -120,7 +121,7 @@ const Comments = ({ setCommentMode, data, user }) => {
   return (
     <CommentBack>
       <CommentModeDeleteButton onClick={onclickCommentModeDelete}>
-        X
+        &#215;
       </CommentModeDeleteButton>
       <CommentForm onSubmit={onclickCommentSubmit}>
         <CommentInput

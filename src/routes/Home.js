@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { dbService } from "../reactfbase";
 import {
   collection,
@@ -19,16 +19,14 @@ const HomeBack = styled.div`
   min-width: 370px;
 `;
 const PostLayout = styled.div`
-  margin-top: 1rem;
-  // border: 3px solid mediumorchid;
-  border-radius: 10px;
-  height: 100%;
-  width: 90%;
-
+  height: 105%;
+  width: 80%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   @media screen and (min-width: 390px) and (min-height: 844px) {
     width: 85%;
@@ -44,8 +42,7 @@ const PostLayout = styled.div`
   }
 `;
 const HamburgerSideBar = styled.div`
-  width: 10rem;
-  background: mediumorchid;
+  width: 12rem;
   opacity: 0.8;
   height: 145vh;
   z-index: 3;
@@ -136,6 +133,7 @@ const HamburgerThree = styled.div`
     width: 3rem;
   }
 `;
+
 const HamburgerSideBarLayout = styled.ul`
   width: 100%;
   padding: 0.5rem;
@@ -145,7 +143,7 @@ const HamburgerSideBarList = styled.li`
   margin-top: 1rem;
   cursor: pointer;
   &:hover {
-    color: white;
+    color: mediumorchid;
   }
 `;
 const Home = ({ user, userLocation }) => {
@@ -171,22 +169,6 @@ const Home = ({ user, userLocation }) => {
   useEffect(() => {
     getRealTimePostData();
   }, [getRealTimePostData]);
-  // 전체 게시물 보기를 클릭 하였을때 호출
-  const onclickPostWhole = useCallback(() => {
-    const q = query(
-      collection(dbService, "test"),
-      orderBy("createTime", "desc")
-    );
-    onSnapshot(q, (snapshot) => {
-      setCurrentData([]);
-      snapshot.forEach((doc) =>
-        setCurrentData((prevDocData) => [
-          ...prevDocData,
-          { ...doc.data(), id: doc.id },
-        ])
-      );
-    });
-  }, []);
   // 카페, 음식, 마트 게시물 보기 클릭하였을 때
   const onclickPost = useCallback((category) => {
     const q = query(
@@ -239,6 +221,12 @@ const Home = ({ user, userLocation }) => {
     });
   }, []);
 
+  const iconStyle = useCallback(() => {
+    return {
+      marginRight: "0.5rem",
+    };
+  }, []);
+
   return (
     <HomeBack>
       <HamburgerInputCheckbox
@@ -253,23 +241,25 @@ const Home = ({ user, userLocation }) => {
       </HamburgerLabel>
       <HamburgerSideBar>
         <HamburgerSideBarLayout>
-          <HamburgerSideBarList onClick={onclickPostWhole}>
-            전체 게시글
-          </HamburgerSideBarList>
           <HamburgerSideBarList onClick={() => onclickPost("cafe")}>
+            <i class="fa-solid fa-mug-hot" style={iconStyle()}></i>
             카페 게시글
           </HamburgerSideBarList>
           <HamburgerSideBarList onClick={() => onclickPost("food")}>
-            음식 게시글
+            <i class="fa-solid fa-bowl-food" style={iconStyle()}></i>
+            food 게시글
           </HamburgerSideBarList>
           <HamburgerSideBarList onClick={() => onclickPost("mart")}>
+            <i class="fa-solid fa-store" style={iconStyle()}></i>
             마트 게시글
           </HamburgerSideBarList>
           <HamburgerSideBarList onClick={onclickPostLike}>
-            좋아요 순서
+            <i class="fa-regular fa-heart" style={iconStyle()}></i>
+            좋아요 순으로 보기
           </HamburgerSideBarList>
           <HamburgerSideBarList onClick={onclickPostAddress}>
-            나의 지역 게시물
+            <i class="fa-solid fa-location-dot" style={iconStyle()}></i>
+            나의 지역 게시글만 보기
           </HamburgerSideBarList>
         </HamburgerSideBarLayout>
       </HamburgerSideBar>
@@ -278,7 +268,15 @@ const Home = ({ user, userLocation }) => {
           <div>현재 게시물이 없습니다.</div>
         ) : (
           currentData.map((data, index) => {
-            return <Post key={index} data={data} user={user} />;
+            return (
+              <Post
+                key={index}
+                data={data}
+                user={user}
+                index={index}
+                dataLen={currentData.length}
+              />
+            );
           })
         )}
       </PostLayout>

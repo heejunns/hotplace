@@ -9,12 +9,19 @@ import Comments from "./Comments";
 // 게시글 전체 스타일 태그
 const PostStyle = styled.div`
   width: 90%;
-  border: 3px solid mediumorchid;
-  border-radius: 10px;
+  border-top: ${(props) =>
+    props.index === 0 ? `none` : `1px solid mediumorchid`};
+  border-left: 1px solid mediumorchid;
+  border-right: 1px solid mediumorchid;
+
+  border-bottom: ${(props) =>
+    props.index === props.dataLen - 1 && `1px solid mediumorchid`};
   display: flex;
   flex-direction: column;
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
   padding: 0.5rem;
-  margin: 1rem 0;
   font-size: 1rem;
   @media screen and (min-width: 768px) and (min-height: 1024px) {
     font-size: 1.3rem;
@@ -146,8 +153,9 @@ const PostText = styled.h3`
 `;
 // 게시글의 좋아요 스타일 태그
 const PostLike = styled.div`
-  width: 2.3rem;
+  width: 3rem;
   color: mediumorchid;
+
   cursor: pointer;
   margin-top: 1rem;
   font-size: 1.2rem;
@@ -166,7 +174,7 @@ const PostLike = styled.div`
 `;
 
 // word-break: break-all;
-const Post = ({ data, user }) => {
+const Post = ({ data, user, index, dataLen }) => {
   const [inputNewText, setInputNewText] = useState(data.inputText); // 닉네임을 변경하는 값의 state
   const [editingMode, setEditngMode] = useState(false); // 게시글 수정 모드를 사용하고 있는지 여부 state
   const [mapMode, setMapMode] = useState(false); // 맵을 보는지 여부 state
@@ -253,10 +261,9 @@ const Post = ({ data, user }) => {
   }, []);
 
   return (
-    <PostStyle image={data.getUploadFileURL}>
+    <PostStyle image={data.getUploadFileURL} index={index} dataLen={dataLen}>
       <PostLayout>
         <PostNickname>{data.nickname} 님의 게시글</PostNickname>
-
         <PostTime>
           {" "}
           {Math.round((Date.now() - data.createTime) / 1000 / 60) < 60
@@ -314,7 +321,6 @@ const Post = ({ data, user }) => {
           </>
         )}
       </ButtonLayout>
-
       {editingMode ? (
         <>
           <PostEditForm onSubmit={onsubmitAdit}>

@@ -30,9 +30,8 @@ const ProfileBack = styled.div`
 `;
 // 프로필 이름을 변경하는 폼 스타일 태그
 const ProfileForm = styled.form`
-  margin-top: 0.5rem;
-  border: 3px solid mediumorchid;
-  border-radius: 10px;
+  border: 1px solid mediumorchid;
+  border-top: none;
   width: 78%;
   height: 10%;
   display: flex;
@@ -47,8 +46,6 @@ const ProfileForm = styled.form`
 `;
 // 현재 사용자가 올린 게시글을 보여줄 게시글 레이아웃 스타일 태그
 const PostProfileLayout = styled.div`
-  padding: 0.5rem;
-  margin-top: 1rem;
   border-radius: 10px;
   height: 90%;
   width: 90%;
@@ -58,10 +55,10 @@ const PostProfileLayout = styled.div`
   justify-content: flex-start;
   align-items: center;
   @media screen and (min-width: 400px) {
-    width: 80%;
+    width: 77.8%;
   }
   @media screen and (min-width: 820px) {
-    width: 60%;
+    width: 58.85%;
   }
 `;
 // 프로필 이름 변경 폼 내부의 input 스타일 태그
@@ -69,7 +66,7 @@ const ProfileFormInput = styled.input`
   width: 60%;
   height: 2rem;
   border-radius: 5px;
-  border: 3px solid mediumorchid;
+  border: 2px solid mediumorchid;
   padding: 0.5rem;
   background: white;
   margin-right: 1rem;
@@ -77,9 +74,9 @@ const ProfileFormInput = styled.input`
 // 프로필 이름 변경 후 버튼을 클릭하는데 닉네임 변경 버튼 스타일 태그
 const ProfileFormSubmit = styled.input`
   border-radius: 5px;
-  border: 3px solid mediumorchid;
+  border: 2px solid mediumorchid;
   padding: 0.5rem;
-  width: 30%;
+  width: 5rem;
   height: 2rem;
   background: white;
 `;
@@ -152,7 +149,15 @@ const Profile = ({ user, setCurrentUser }) => {
           <div>현재 게시물이 없습니다.</div>
         ) : (
           userUploadData.map((data, index) => {
-            return <Post key={index} data={data} user={user} />;
+            return (
+              <Post
+                key={index}
+                data={data}
+                user={user}
+                index={index}
+                dataLen={userUploadData.length}
+              />
+            );
           })
         )}
       </PostProfileLayout>

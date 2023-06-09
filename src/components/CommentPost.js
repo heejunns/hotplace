@@ -11,10 +11,6 @@ const CommentLayout = styled.div`
     font-size: 2rem;
   }
 `;
-// 댓글 수정하기 스타일 태그
-const CommentAdit = styled.span`
-  float: right;
-`;
 // 댓글 지우기 스타일 태그
 const CommentDelete = styled.span`
   float: right;
@@ -94,14 +90,10 @@ const CommentPost = ({ commentInfo, data, user }) => {
       comments: newComments,
     });
   };
-
   return (
     <div>
       <CommentLayout>
-        <CommentAdit>수정</CommentAdit>
-        <CommentDelete onClick={onclickDeleteCommentButton}>
-          삭제 /{" "}
-        </CommentDelete>
+        <CommentDelete onClick={onclickDeleteCommentButton}>삭제</CommentDelete>
         <CommentWriter>
           {commentInfo.commentWriter} /{" "}
           {Math.round(
@@ -112,13 +104,23 @@ const CommentPost = ({ commentInfo, data, user }) => {
               )} 분 전`
             : Math.round(
                 (Date.now() - commentInfo.commentCreateTime) / 1000 / 60
-              ) > 59
+              ) > 59 &&
+              Math.round(
+                (Date.now() - commentInfo.commentCreateTime) / 1000 / 60 / 60
+              ) < 24
             ? `약 ${Math.round(
                 (Date.now() - commentInfo.commentCreateTime) / 1000 / 60 / 60
               )} 시간 전`
             : Math.round(
                 (Date.now() - commentInfo.commentCreateTime) / 1000 / 60 / 60
-              ) > 23
+              ) > 23 &&
+              Math.round(
+                (Date.now() - commentInfo.commentCreateTime) /
+                  1000 /
+                  60 /
+                  60 /
+                  24
+              ) < 30
             ? `약 ${Math.round(
                 (Date.now() - commentInfo.commentCreateTime) /
                   1000 /
