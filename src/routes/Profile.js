@@ -10,6 +10,8 @@ import {
 } from "firebase/firestore";
 import styled from "styled-components";
 import Post from "../components/Post";
+import { useRecoilState } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 
 // 현재 우리가 다양한 컴포넌트에 prop 로 전달해주고 있는 user 객체를 authService.currentUser 로 업데이트 해야한다. 하지만 set 함수로 업데이트 해도 리 랜더링이 되지 않는다. 왜일까?
 // react 는 복잡하고 큰 객체를 전에 상태와 바뀌었는지 판단하는것을 어려워한다.
@@ -80,7 +82,8 @@ const ProfileFormSubmit = styled.input`
   height: 2rem;
   background: white;
 `;
-const Profile = ({ user, setCurrentUser }) => {
+const Profile = () => {
+  const [user, setUser] = useRecoilState(userAtom);
   const [userUploadData, setUserUploadData] = useState([]); // 해당 유저가 작성한 게시글만 가져와서 저장하는 state
   const [newNickname, setNewNickname] = useState(user.displayName); // 해당 유저의 닉네임을 저장하는 state
 
@@ -100,7 +103,7 @@ const Profile = ({ user, setCurrentUser }) => {
         ])
       );
     });
-  }, []);
+  }, [user.uid]);
 
   useEffect(() => {
     getRealtimeUserData();
@@ -127,7 +130,8 @@ const Profile = ({ user, setCurrentUser }) => {
     //   uid: authService.currentUser.uid,
     //   displayName: authService.currentUser.displayName,
     // });
-    setCurrentUser(JSON.parse(JSON.stringify(authService.currentUser)));
+    const newUser = JSON.parse(JSON.stringify(authService.currentUser));
+    setUser(newUser);
 
     setNewNickname("");
   };

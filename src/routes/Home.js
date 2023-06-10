@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { dbService } from "../reactfbase";
 import {
   collection,
@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import Post from "../components/Post";
 import styled from "styled-components";
+
 const HomeBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   width: 100%;
@@ -146,7 +147,7 @@ const HamburgerSideBarList = styled.li`
     color: mediumorchid;
   }
 `;
-const Home = ({ user, userLocation }) => {
+const Home = ({ userLocation }) => {
   const [currentData, setCurrentData] = useState([]);
 
   // 실시간으로 데이터 베이스에 저장되어 있는 데이터를 가져온다.
@@ -219,7 +220,7 @@ const Home = ({ user, userLocation }) => {
         ])
       );
     });
-  }, []);
+  }, [userLocation]);
 
   const iconStyle = useCallback(() => {
     return {
@@ -272,7 +273,6 @@ const Home = ({ user, userLocation }) => {
               <Post
                 key={index}
                 data={data}
-                user={user}
                 index={index}
                 dataLen={currentData.length}
               />

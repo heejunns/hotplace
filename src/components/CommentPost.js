@@ -2,6 +2,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import styled from "styled-components";
 import { dbService } from "../reactfbase";
+import { userAtom } from "../recoils/UserAtom";
+import { useRecoilValue } from "recoil";
 
 // 댓글 레이아웃 스타일 태그
 const CommentLayout = styled.div`
@@ -36,7 +38,8 @@ const CommentLike = styled.div`
   }
 `;
 
-const CommentPost = ({ commentInfo, data, user }) => {
+const CommentPost = ({ commentInfo, data }) => {
+  const user = useRecoilValue(userAtom);
   // 댓글에서 좋아요 버튼을 클릭하면 호출
   const onclickLikeButton = async () => {
     const newComments = data.comments.map((comment) => {

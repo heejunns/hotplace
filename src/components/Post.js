@@ -5,6 +5,8 @@ import { deleteObject, ref } from "firebase/storage";
 import styled from "styled-components";
 import PostMap from "./PostMap";
 import Comments from "./Comments";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 
 // 게시글 전체 스타일 태그
 const PostStyle = styled.div`
@@ -109,7 +111,7 @@ const PostEditInput = styled.input`
 `;
 // 게시글 수정 폼 내에 게시글 수정 완료 버튼 스타일 태그
 const PostEditSubmit = styled.input`
-  width: 25%;
+  width: 10rem%;
   height: 1.5rem;
   border-radius: 5px;
   border: 3px solid mediumorchid;
@@ -174,7 +176,9 @@ const PostLike = styled.div`
 `;
 
 // word-break: break-all;
-const Post = ({ data, user, index, dataLen }) => {
+const Post = ({ data, index, dataLen }) => {
+  const user = useRecoilValue(userAtom);
+  console.log(user);
   const [inputNewText, setInputNewText] = useState(data.inputText); // 닉네임을 변경하는 값의 state
   const [editingMode, setEditngMode] = useState(false); // 게시글 수정 모드를 사용하고 있는지 여부 state
   const [mapMode, setMapMode] = useState(false); // 맵을 보는지 여부 state
@@ -190,7 +194,6 @@ const Post = ({ data, user, index, dataLen }) => {
   // 게시글 삭제 버튼을 클릭하면 호출되는 콜백함수
   const onclickDeleteButton = useCallback(async () => {
     try {
-      console.log("클릭중");
       await deleteDoc(doc(dbService, "test", data.id));
       if (data.getUploadFileURL !== "") {
         await deleteObject(ref(storageService, data.getUploadFileURL));
@@ -208,16 +211,19 @@ const Post = ({ data, user, index, dataLen }) => {
   }, []);
 
   // 게시물을 수정하고 버튼을 클릭하였을때 호출
-  const onsubmitAdit = async (e) => {
-    e.preventDefault();
+  const onsubmitAdit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    await updateDoc(doc(dbService, "test", data.id), {
-      inputText: inputNewText,
-    }); // 데이터 베이스 업데이트
+      await updateDoc(doc(dbService, "test", data.id), {
+        inputText: inputNewText,
+      }); // 데이터 베이스 업데이트
 
-    setEditngMode((prev) => !prev);
-    setInputNewText("");
-  };
+      setEditngMode((prev) => !prev);
+      setInputNewText("");
+    },
+    [data.id, inputNewText]
+  );
 
   // 지도보기 버튼을 클릭하면 호출
   const onclickMapButton = useCallback(() => {
@@ -228,7 +234,7 @@ const Post = ({ data, user, index, dataLen }) => {
   // 하트를 클릭하면 호출
 
   // 좋아요 버튼을 클릭하면 호출
-  const onclickLike = async () => {
+  const onclickLike = useCallback(async () => {
     if (data.likeMember.length === 0) {
       // likeMember 에 아무도 없다면
       await updateDoc(doc(dbService, "test", data.id), {
@@ -252,7 +258,7 @@ const Post = ({ data, user, index, dataLen }) => {
         likeNumber: [...data.likeMember, user.uid].length, // 추가한 likeMember 의 길이 저장
       });
     }
-  };
+  }, [data.id, data.likeMember, user.uid]);
   // 댓글 달기 버튼 클릭하면 호출
   const onclickComments = useCallback(() => {
     setCommentMode((prev) => !prev); // 댓글 기능 열기
@@ -335,9 +341,7 @@ const Post = ({ data, user, index, dataLen }) => {
         </>
       ) : null}
       {mapMode && <PostMap data={data} />}
-      {commentMode && (
-        <Comments setCommentMode={setCommentMode} data={data} user={user} />
-      )}
+      {commentMode && <Comments setCommentMode={setCommentMode} data={data} />}
       <PostLike onClick={onclickLike}>
         &#9829;<span>{data.likeMember.length}</span>
       </PostLike>

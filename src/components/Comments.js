@@ -4,6 +4,8 @@ import CommentPost from "./CommentPost";
 import { doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../reactfbase";
 import { v4 as uuidv4 } from "uuid";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 
 // 댓글 기능의 뒷배경 스타일 태그
 const CommentBack = styled.div`
@@ -86,7 +88,8 @@ const NoComment = styled.div`
   }
 `;
 
-const Comments = ({ setCommentMode, data, user }) => {
+const Comments = ({ setCommentMode, data }) => {
+  const user = useRecoilValue(userAtom);
   const [commentInput, setCommentInput] = useState(""); // 댓글 입력 state
 
   const onchangeCommentInput = (event) => {

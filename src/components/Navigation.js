@@ -3,14 +3,16 @@ import React, { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService } from "../reactfbase";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 
 // 네이게이선 배경 스타일 태그
 const NavigationBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   height: 5vh;
   width: 100%;
+  min-width: 500px;
   border-bottom: 1px solid mediumorchid;
-
   display: flex;
   justify-content: center;
   @media screen and (min-width: 390px) and (min-height: 844px) {
@@ -82,7 +84,8 @@ const LogOutButton = styled.button`
   }
 `;
 
-const Navigation = ({ user }) => {
+const Navigation = () => {
+  const user = useRecoilValue(userAtom);
   const navigate = useNavigate(); // useNavigate 훅스를 사용해서 로그 아웃시 "/" 주소로 강제 이동
 
   // 로그아웃 버튼을 클릭하면 호출되는 콜백 함수
@@ -108,6 +111,7 @@ const Navigation = ({ user }) => {
         <li>
           <Link to="/" style={{ textDecoration: "none" }}>
             <NavigationItem>
+              {" "}
               <i class="fa-solid fa-house" style={iconStyle()}></i>홈
             </NavigationItem>
           </Link>
@@ -116,33 +120,36 @@ const Navigation = ({ user }) => {
           <Link to="/profile" style={{ textDecoration: "none" }}>
             {user.displayName === null ? (
               <NavigationItem>
-                <i class="fa-regular fa-user"></i>
-                닉네임을 만들어주세요.
+                {" "}
+                <i class="fa-regular fa-user"></i>닉네임을 만들어주세요.
               </NavigationItem>
             ) : (
-              <NavigationItem>
-                {" "}
-                <i class="fa-regular fa-user" style={iconStyle()}></i>
-                {user.displayName} 님 프로필
-              </NavigationItem>
+              <>
+                <NavigationItem>
+                  {" "}
+                  <i class="fa-regular fa-user" style={iconStyle()}></i>
+                  {user.displayName} 님 프로필
+                </NavigationItem>
+              </>
             )}
           </Link>
         </li>
         <li>
           <Link to="/postmake" style={{ textDecoration: "none" }}>
             <NavigationItem>
-              <i class="fa-solid fa-square-plus" style={iconStyle()}></i>
-              게시글 올리기
+              <i class="fa-solid fa-square-plus" style={iconStyle()}></i>게시글
+              올리기
             </NavigationItem>
           </Link>
         </li>
         <li>
           <LogOutButton onClick={onclickLogoutButton}>
+            {" "}
             <i
               class="fa-solid fa-arrow-right-from-bracket"
               style={iconStyle()}
             ></i>
-            로그아웃
+            로그아웃{" "}
           </LogOutButton>
         </li>
       </NavigationLayout>

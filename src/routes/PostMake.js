@@ -6,6 +6,8 @@ import { addDoc, collection } from "firebase/firestore";
 import styled from "styled-components";
 import Map from "../components/Map";
 import { useNavigate } from "react-router-dom";
+import { userAtom } from "../recoils/UserAtom";
+import { useRecoilValue } from "recoil";
 // 식별자를 랜덤으로 생성해줌
 
 // 게시글 올리는 페이지의 배경 스타일 태그
@@ -245,7 +247,8 @@ const BottomLayout = styled.div`
     margin-top: 2rem;
   }
 `;
-const PostMake = ({ user, userLocation }) => {
+const PostMake = ({ userLocation }) => {
+  const user = useRecoilValue(userAtom);
   const navigate = useNavigate(); // useNavigate 훅스를 사용해서 게시글을 올리면 "/" 주소로 강제 이동
   const [inputText, setInputText] = useState(""); // input 태그에 입력하는 value 의 state
   const [uploadImageFileURL, setUploadImageFileURL] = useState(""); // 업로드 하려는 이미지의 주소를 저장

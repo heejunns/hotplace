@@ -7,30 +7,26 @@ import PropTypes from "prop-types";
 import Signup from "../routes/Signup";
 import Navigation from "./Navigation";
 import PostMake from "../routes/PostMake";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 // displayname 을 업데이트 한다고 해서 새로운 user 객체를 생성해서 displayname 을 변경하는것이 아닌 기존의 user 객체의 값을 변환한다. 그래서 닉네임을 변경해도 바로 네이게이션에 변경한 닉네임이 바로 업데이트 되지 않음.
 
-const AppRouter = ({ isLogin, user, setCurrentUser, userLocation }) => {
+const AppRouter = ({ userLocation }) => {
+  const user = useRecoilValue(userAtom);
+  console.log(user);
   return (
     <>
       <Router>
-        {isLogin && <Navigation user={user} />}
+        {user && <Navigation />}
         <Routes>
-          {isLogin ? (
+          {user ? (
             <>
-              <Route
-                path="/"
-                element={<Home user={user} userLocation={userLocation} />}
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile user={user} setCurrentUser={setCurrentUser} />
-                }
-              />
+              <Route path="/" element={<Home userLocation={userLocation} />} />
+              <Route path="/profile" element={<Profile />} />
 
               <Route
                 path="/postmake"
-                element={<PostMake user={user} userLocation={userLocation} />}
+                element={<PostMake userLocation={userLocation} />}
               />
             </>
           ) : (
@@ -45,7 +41,4 @@ const AppRouter = ({ isLogin, user, setCurrentUser, userLocation }) => {
   );
 };
 
-AppRouter.propTypes = {
-  isLogin: PropTypes.node,
-};
 export default AppRouter;

@@ -3,6 +3,8 @@ import AppRouter from "./Router";
 import { onAuthStateChanged } from "firebase/auth";
 import { authService } from "../reactfbase";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
+import { userAtom } from "../recoils/UserAtom";
 
 // 처음 로딩 될때 화면을 보여줄 컴포넌트
 const Loading = styled.div`
@@ -20,18 +22,16 @@ const Loading = styled.div`
 // 파이어 베이스가 초기화되고 모든 걸 로드할때까지 기다려 줘야 한다.
 
 const App = () => {
+  const setUser = useSetRecoilState(userAtom);
   const [firebaseInitialize, setFirebaseInitialize] = useState(null); // 파이어 베이스의 초기화 여부 state
-  const [isLogin, setIsLogin] = useState(false); // 로그인 여부 state
-  const [currentUser, setCurrentUser] = useState(null); // 현재 로그인하고 있는 유저의 정보
+  // const [currentUser, setCurrentUser] = useState(null); // 현재 로그인하고 있는 유저의 정보
   const [userLocation, setUserLocation] = useState(""); // 현재 유저의 위치 정보
   useEffect(() => {
     onAuthStateChanged(authService, (user) => {
       if (user) {
-        setCurrentUser(user);
-        setIsLogin(true);
+        setUser(JSON.parse(JSON.stringify(user)));
       } else {
-        setCurrentUser(null);
-        setIsLogin(false);
+        setUser(null);
       }
       setFirebaseInitialize(true);
     });
@@ -67,12 +67,7 @@ const App = () => {
   return (
     <>
       {firebaseInitialize ? (
-        <AppRouter
-          isLogin={isLogin}
-          user={currentUser}
-          setCurrentUser={setCurrentUser}
-          userLocation={userLocation}
-        />
+        <AppRouter userLocation={userLocation} />
       ) : (
         <Loading>불러오는 중...</Loading>
       )}
