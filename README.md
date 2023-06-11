@@ -1,4 +1,6 @@
-🔗  웹사이트 링크 : https://hotplace-10bcb.web.app
+# 우리동네핫플
+
+### 🔗  웹사이트 링크 : [https://hotplace-10bcb.web.app](https://hotplace-10bcb.web.app/#/)
 
 ### 💁‍♂️  왜 만들었는가?
 
@@ -13,31 +15,6 @@
 ## 사용기술
 
 - 프론트엔드 : html, css, styled-components, JavaScript, React.js, Recoil
-- 백엔드 : firebase
-
-### 어플리케이션 주요 기능
-
-### 로그인 기능 : 로그인 기능입니다. 회원가입할 때 입력한 이메일과 비밀번호로 로그인할 수 있으며 구글 계정으로 연동해서 회원가입, 로그인할 수 있습니다.
-
-# 우리동네핫플
-
-### 🔗  웹사이트 링크 : [https://hotplace-10bcb.web.app](https://hotplace-10bcb.web.app/#/)
-
-### 🔗 gitHub 코드 : https://github.com/heejunns/hotplace
-
-### 💁‍♂️  왜 만들었는가?
-
-동네의 카페, 음식점, 마트 등을 한 번에 찾아볼 수 있고 사장님들도 본인의 매장을 홍보할 수 있는 애플리케이션이 있으면 좋겠다는 생각에 개발하였습니다.
-
-### 애플리케이션 설명
-
-사장님들 또는 손님이 직접 글을 게시하여 매장 글을 올릴 수 있으며 손님들의 진짜 의견을 위해서 게시글의 댓글 기능, 좋아요 기능을 만들어 손님들의 진짜 후기를 확인하여 매장을 선택해 방문할 수 있습니다.
-
-누구나 우리 동네 맛집을 소개할 수 있는 애플리케이션입니다.
-
-## 사용기술
-
-- 프론트엔드 : html, css, styled-components, JavaScript, React.js,
 - 백엔드 : firebase
 
 ### 어플리케이션 주요 기능
