@@ -45,7 +45,7 @@
 ### 게시글 분류해서 보기 : 홈 화면에서 오른쪽 위에 햄버거 버튼을 클릭하면 게시글을 원하는 종류만 볼 수 있도록 하였습니다. 종류는 카페, 음식, 마트 관련 게시글만 보기, 좋아요가 가장 많은 게시글 순으로 보기, 내가 사는 지역 게시글만 보기 기능이 있습니다.
 
 <img src = "./images/hamBurgerButton.png">
-<img src = "./images/category.png>
+<img src = "./images/category.png">
 
 ### 개발하면서 어려웠지만 좀 더 배웠던 부분
 
