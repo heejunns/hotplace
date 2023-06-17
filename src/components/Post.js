@@ -51,11 +51,11 @@ const ButtonLayout = styled.div`
 // 게시글 버튼들의 스타일 태그
 const ButtonStyle = styled.button`
   margin: 0 0.3rem;
-  border-radius: 10px;
-  border: 3px solid mediumorchid;
+  border-style: none;
   padding: 0.3rem;
   background: white;
   font-size: 0.5rem;
+  color: mediumorchid;
   @media screen and (min-width: 768px) and (min-height: 1024px) {
     font-size: 1rem;
   }
@@ -309,21 +309,33 @@ const Post = ({ data, index, dataLen }) => {
       <ButtonLayout>
         {data.writer === user.uid ? (
           <>
-            <ButtonStyle onClick={onclickDeleteButton}>게시글 삭제</ButtonStyle>
+            <ButtonStyle onClick={onclickDeleteButton}>
+              <i class="fa-solid fa-trash"></i>
+            </ButtonStyle>
             <ButtonStyle onClick={onclickToggleAditButton}>
-              게시글 수정
+              <i class="fa-solid fa-pen"></i>
             </ButtonStyle>
             {data.userMarkerLocation.length !== 0 && (
-              <ButtonStyle onClick={onclickMapButton}>지도 보기</ButtonStyle>
+              <ButtonStyle onClick={onclickMapButton}>
+                <i class="fa-solid fa-location-dot"></i>
+              </ButtonStyle>
             )}
-            <ButtonStyle onClick={onclickComments}>댓글달기</ButtonStyle>
+            <ButtonStyle onClick={onclickComments}>
+              <i class="fa-regular fa-comment"></i>
+            </ButtonStyle>
           </>
         ) : (
           <>
             {data.userMarkerLocation.length !== 0 && (
-              <ButtonStyle onClick={onclickMapButton}>지도 보기</ButtonStyle>
+              <ButtonStyle onClick={onclickMapButton}>
+                {" "}
+                <i class="fa-solid fa-location-dot"></i>
+              </ButtonStyle>
             )}
-            <ButtonStyle onClick={onclickComments}>댓글달기</ButtonStyle>
+            <ButtonStyle onClick={onclickComments}>
+              {" "}
+              <i class="fa-regular fa-comment"></i>
+            </ButtonStyle>
           </>
         )}
       </ButtonLayout>

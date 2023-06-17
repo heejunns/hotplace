@@ -82,6 +82,11 @@ const ProfileFormSubmit = styled.input`
   height: 2rem;
   background: white;
 `;
+const NoPost = styled.div`
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  color: mediumorchid;
+`;
 const Profile = () => {
   const [user, setUser] = useRecoilState(userAtom);
   const [userUploadData, setUserUploadData] = useState([]); // 해당 유저가 작성한 게시글만 가져와서 저장하는 state
@@ -150,7 +155,7 @@ const Profile = () => {
       </ProfileForm>
       <PostProfileLayout>
         {userUploadData.length === 0 ? (
-          <div>현재 게시물이 없습니다.</div>
+          <NoPost>현재 게시물이 없습니다.</NoPost>
         ) : (
           userUploadData.map((data, index) => {
             return (

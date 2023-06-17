@@ -11,7 +11,6 @@ const NavigationBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   height: 5vh;
   width: 100%;
-  min-width: 500px;
   border-bottom: 1px solid mediumorchid;
   display: flex;
   justify-content: center;
@@ -23,7 +22,7 @@ const NavigationBack = styled.div`
 // 애플리케이션의 이름 스타일 태그
 const Name = styled.div`
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   position: absolute;
   color: mediumorchid;
   left: 1rem;
@@ -31,6 +30,9 @@ const Name = styled.div`
   width: 15%;
   display: flex;
   align-items: center;
+  @media screen and (width: 1024px) and (height: 600px) {
+    top: 0.3rem;
+  }
   @media screen and (max-width: 930px) {
     display: none;
   }
@@ -43,21 +45,36 @@ const NavigationLayout = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.7rem;
-  @media screen and (min-width: 768px) and (min-height: 1024px) {
-    font-size: 1.5rem;
-  }
-  @media screen and (min-width: 400px) {
+  font-size: 0.5rem;
+  @media screen and (min-width: 390px) {
     font-size: 0.8rem;
   }
-  @media screen and (min-width: 768px) {
-    font-size: 1.5rem;
+  @media screen and (min-width: 521px) {
+    font-size: 1rem;
+  }
+  @media screen and (min-width: 700px) {
+    font-size: 1.3rem;
+  }
+  @media screen and (min-width: 900px) {
+    font-size: 1.6rem;
   }
 `;
 // 네비게이션 요소들의 스타일 태그
 const NavigationItem = styled.a`
   color: black;
   margin: 0 1rem;
+  @media screen and (min-width: 390px) {
+    margin: 0 0.4rem;
+  }
+  @media screen and (min-width: 521px) {
+    margin: 0 0.5rem;
+  }
+  @media screen and (min-width: 700px) {
+    margin: 0 1rem;
+  }
+  @media screen and (min-width: 900px) {
+    margin: 0 1.3rem;
+  }
   &:hover {
     color: mediumorchid;
   }
@@ -66,7 +83,7 @@ const NavigationItem = styled.a`
 const LogOutButton = styled.button`
   cursor: pointer;
   font-family: "Nanum Myeongjo", serif;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   border-style: none;
   background: transparent;
   color: black;
@@ -76,11 +93,17 @@ const LogOutButton = styled.button`
   @media screen and (min-width: 768px) and (min-height: 1024px) {
     font-size: 1.5rem;
   }
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 390px) {
     font-size: 0.8rem;
   }
-  @media screen and (min-width: 768px) {
-    font-size: 1.5rem;
+  @media screen and (min-width: 521px) {
+    font-size: 1rem;
+  }
+  @media screen and (min-width: 700px) {
+    font-size: 1.3rem;
+  }
+  @media screen and (min-width: 900px) {
+    font-size: 1.6rem;
   }
 `;
 

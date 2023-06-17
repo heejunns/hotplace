@@ -13,14 +13,14 @@ import styled from "styled-components";
 const HomeBack = styled.div`
   font-family: "Nanum Myeongjo", serif;
   width: 100%;
-  height: 90vh;
+  height: 95vh;
   background: white;
   display: flex;
   justify-content: center;
   min-width: 370px;
 `;
 const PostLayout = styled.div`
-  height: 105%;
+  height: 100%;
   width: 80%;
   &::-webkit-scrollbar {
     display: none;
@@ -36,23 +36,33 @@ const PostLayout = styled.div`
     width: 70%;
   }
   @media screen and (min-width: 400px) {
-    width: 80%;
+    width: 70%;
   }
   @media screen and (min-width: 820px) {
     width: 60%;
   }
+  @media screen and (min-width: 1000px) {
+    width: 50%;
+  }
 `;
 const HamburgerSideBar = styled.div`
-  width: 12rem;
+  width: 13rem;
   opacity: 0.8;
+  background: mediumorchid;
   height: 145vh;
   z-index: 3;
-  top: 2.1rem;
+  top: 3.4rem;
   position: fixed;
-  right: 0px;
+  right: 0;
   transition: all ease 1s;
+  @media screen and (width: 540px) and (height: 720px) {
+    top: 2.2rem;
+  }
+  @media screen and (min-width: 900px) {
+    top: 2rem;
+    background: transparent;
+  }
 `;
-
 const HamburgerLabel = styled.label`
   position: absolute;
   top: 0.3rem;
@@ -64,77 +74,79 @@ const HamburgerLabel = styled.label`
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
-  @media screen and (min-width: 390px) and (min-height: 844px) {
+  font-size: 2rem;
+  @media screen and (min-width: 390px) {
     top: 0.5rem;
     right: 0.3rem;
     height: 1.8rem;
     width: 2.3rem;
   }
-  @media screen and (min-width: 768px) and (min-height: 1024px) {
-    top: 0.3rem;
+  @media screen and (min-width: 768px) {
+    top: 0rem;
     right: 0.3rem;
     height: 2.8rem;
     width: 3.3rem;
+    font-size: 1.5rem;
   }
-  @media screen and (max-width: 359px) {
+  @media screen and (max-width: 530px) {
     display: none;
   }
-`;
 
-const HamburgerOne = styled.div`
-  width: 1.5rem;
-  height: 0.2rem;
-  border: 1px solid black;
-  background: black;
-  border-radius: 10px;
-  position: relative;
-  @media screen and (min-width: 390px) and (min-height: 844px) {
-    height: 0.3rem;
+  @media screen and (min-width: 900px) {
+    top: 0.2rem;
+    right: 0.3rem;
+    height: 2.3rem;
+    font-size: 1.8rem;
+  }
+  @media screen and (width: 540px) and (height: 720px) {
+    top: -0.3rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 1.5rem;
   }
   @media screen and (min-width: 768px) and (min-height: 1024px) {
-    height: 0.4rem;
-    width: 3rem;
+    top: 0.2rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 2rem;
+  }
+  @media screen and (min-width: 768px) and (min-height: 1024px) {
+    top: 0.2rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 2rem;
+  }
+  @media screen and (min-width: 820px) and (min-height: 1024px) {
+    top: 0.4rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 2.3rem;
+  }
+  @media screen and (min-width: 912px) and (min-height: 1024px) {
+    top: 0.8rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 2.5rem;
+  }
+  @media screen and (min-width: 1024px) and (height: 600px) {
+    top: -0.4rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 1.7rem;
+  }
+  @media screen and (min-width: 1280px) and (min-height: 800px) {
+    top: -0.1rem;
+    right: 0.3rem;
+    height: 2.8rem;
+    font-size: 2rem;
   }
 `;
 const HamburgerInputCheckbox = styled.input`
   display: none;
   &:checked ~ ${HamburgerSideBar} {
-    right: -200px;
+    right: -210px;
   }
 `;
-
-const HamburgerTwo = styled.div`
-  width: 1.5rem;
-  height: 0.2rem;
-  border: 1px solid black;
-  background: black;
-  border-radius: 10px;
-  @media screen and (min-width: 390px) and (min-height: 844px) {
-    height: 0.3rem;
-  }
-
-  @media screen and (min-width: 768px) and (min-height: 1024px) {
-    height: 0.4rem;
-    width: 3rem;
-  }
-`;
-
-const HamburgerThree = styled.div`
-  width: 1.5rem;
-  height: 0.2rem;
-  border: 1px solid black;
-  background: black;
-  border-radius: 10px;
-  @media screen and (min-width: 390px) and (min-height: 844px) {
-    height: 0.3rem;
-  }
-
-  @media screen and (min-width: 768px) and (min-height: 1024px) {
-    height: 0.4rem;
-    width: 3rem;
-  }
-`;
-
 const HamburgerSideBarLayout = styled.ul`
   width: 100%;
   padding: 0.5rem;
@@ -146,6 +158,11 @@ const HamburgerSideBarList = styled.li`
   &:hover {
     color: mediumorchid;
   }
+`;
+const NoPost = styled.div`
+  font-size: 3rem;
+  margin-top: 2rem;
+  color: mediumorchid;
 `;
 const Home = ({ userLocation }) => {
   const [currentData, setCurrentData] = useState([]);
@@ -236,9 +253,7 @@ const Home = ({ userLocation }) => {
         checked="false"
       ></HamburgerInputCheckbox>
       <HamburgerLabel htmlFor="hamburger">
-        <HamburgerOne></HamburgerOne>
-        <HamburgerTwo></HamburgerTwo>
-        <HamburgerThree></HamburgerThree>
+        <i class="fa-solid fa-bars"></i>
       </HamburgerLabel>
       <HamburgerSideBar>
         <HamburgerSideBarLayout>
@@ -266,7 +281,7 @@ const Home = ({ userLocation }) => {
       </HamburgerSideBar>
       <PostLayout>
         {currentData.length === 0 ? (
-          <div>현재 게시물이 없습니다.</div>
+          <NoPost>현재 게시물이 없습니다.</NoPost>
         ) : (
           currentData.map((data, index) => {
             return (

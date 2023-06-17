@@ -107,6 +107,7 @@ const Comments = ({ setCommentMode, data }) => {
   // 댓글을 입력하고 댓글 게시 버튼을 클릭하면 호출
   const onclickCommentSubmit = async (event) => {
     event.preventDefault();
+    console.log(typeof data.id, "뭐요");
     await updateDoc(doc(dbService, "test", data.id), {
       comments: [
         ...data.comments,
